@@ -41,7 +41,7 @@ public class Billboard implements Serializable {
     private LocalDateTime createTime;
 
     @ApiModelProperty(value = "1：展示中，0：过期")
-    private Boolean show;
+    private Boolean isShow;
 
 
 }

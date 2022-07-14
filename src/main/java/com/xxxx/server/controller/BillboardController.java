@@ -33,7 +33,7 @@ public class BillboardController extends BaseController {
     @ApiOperation("获取公告板内容")
     @GetMapping("/show")
     public R getNotices(){
-        List<Billboard> list = billboardService.list(new QueryWrapper<Billboard>().eq("show",true));
+        List<Billboard> list = billboardService.list(new QueryWrapper<Billboard>().eq("is_show",true));
         return R.ok().put("data",list.get(list.size()-1)) ;
     }
 
