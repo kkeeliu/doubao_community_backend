@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yeb?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/doubao?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
     username: root
     password: root
     hikari:
@@ -25,3 +25,7 @@ spring:
       connection-timeout: 30000
       # 测试连接是否可用的查询语句
       connection-test-query: SELECT 1
+# 解决swagger2文档由于spring boot版本升级路径匹配规则改变的问题
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
