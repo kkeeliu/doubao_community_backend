@@ -2,8 +2,8 @@ package com.xxxx.server.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.xxxx.server.common.api.ApiResult;
 import com.xxxx.server.common.base.BaseController;
+import com.xxxx.server.common.utils.R;
 import com.xxxx.server.pojo.Billboard;
 import com.xxxx.server.service.IBillboardService;
 import io.swagger.annotations.ApiOperation;
@@ -31,10 +31,10 @@ public class BillboardController extends BaseController {
     private IBillboardService billboardService;
 
     @ApiOperation("获取公告板内容")
-    @GetMapping()
-    public ApiResult<Billboard> getNotices(){
+    @GetMapping("/show")
+    public R getNotices(){
         List<Billboard> list = billboardService.list(new QueryWrapper<Billboard>().eq("show",true));
-        return ApiResult.success(list.get(list.size()-1)) ;
+        return R.ok().put("data",list.get(list.size()-1)) ;
     }
 
 }
