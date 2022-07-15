@@ -29,3 +29,13 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+jwt:
+  # JWT存储的请求头
+  tokenHeader: Authorization
+  # JWT 加解密使用的密钥
+  secret: doubao-secret
+  # JWT的超期限时间（60*60*24）=24h 换成秒
+  expiration: 604800
+  # JWT 负载中拿到开头
+  tokenHead: Bearer

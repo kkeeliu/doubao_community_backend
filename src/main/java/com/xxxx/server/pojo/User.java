@@ -4,11 +4,16 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.Collection;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * <p>
@@ -23,7 +28,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("t_user")
 @ApiModel(value="User对象", description="用户表")
-public class User implements Serializable {
+public class User implements Serializable , UserDetails {
 
     private static final long serialVersionUID = 1L;
 
@@ -51,17 +56,13 @@ public class User implements Serializable {
     @ApiModelProperty(value = "积分")
     private Integer score;
 
-    @ApiModelProperty(value = "token")
-    private String token;
 
     @ApiModelProperty(value = "个人简介")
     private String bio;
 
-    @ApiModelProperty(value = "是否激活，1：是，0：否")
-    private Boolean active;
+    @ApiModelProperty(value = "是否启用，1：是，0：否")
+    private Boolean enabled;
 
-    @ApiModelProperty(value = "状态，1：使用，0：停用")
-    private Boolean status;
 
     @ApiModelProperty(value = "用户角色")
     @TableField("role_id")
@@ -76,4 +77,28 @@ public class User implements Serializable {
     private LocalDateTime modifyTime;
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }
