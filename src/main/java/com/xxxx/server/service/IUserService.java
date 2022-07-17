@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface IUserService extends IService<User> {
 
-    R login(String username, String password, HttpServletRequest request);
+    R login(String username, String password, String code,HttpServletRequest request);
 
     User getCurrentUserInfoByUserName(String username);
 }

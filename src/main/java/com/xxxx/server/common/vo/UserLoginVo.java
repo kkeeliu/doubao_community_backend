@@ -16,10 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserLoginVo {
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "用户名",required = true)
     private String username;
 
 
-    @ApiModelProperty(value = "密码")
+    @ApiModelProperty(value = "密码",required = true)
     private String password;
+
+    @ApiModelProperty(value = "验证码",required = true)
+    private String code;
+
+
 }

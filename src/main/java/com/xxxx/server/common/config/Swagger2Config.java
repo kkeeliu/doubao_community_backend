@@ -7,7 +7,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -42,7 +41,7 @@ public class Swagger2Config {
                 .title("豆包社区完善版")
                 .version("1.5")
                 .description("豆包社区不断迭代版本-刘可")
-                .contact(new Contact("刘可","","liukechn@163.com"))
+                .contact(new Contact("刘可","http:localhost:9090/doc.html","liukechn@163.com"))
                 .build();
     }
 
