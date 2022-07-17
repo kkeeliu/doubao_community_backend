@@ -4,6 +4,7 @@ import com.xxxx.server.pojo.Tip;
 import com.xxxx.server.mapper.TipMapper;
 import com.xxxx.server.service.ITipService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TipServiceImpl extends ServiceImpl<TipMapper, Tip> implements ITipService {
 
+    @Autowired
+    private TipMapper tipMapper;
+
+    @Override
+    public Tip getTipToday() {
+        return tipMapper.selectTipToday();
+    }
 }

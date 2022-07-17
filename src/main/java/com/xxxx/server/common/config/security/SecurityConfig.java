@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/v2/api-docs/**",
                 "/billboard/show",
                 "/captcha",
-                "/ws/**"
+                "/tip/today"
         );
     }
 

@@ -14,5 +14,8 @@
     <sql id="Base_Column_List">
         id, content, author, type
     </sql>
+    <select id="selectTipToday" resultType="com.xxxx.server.pojo.Tip">
+        SELECT * FROM t_tip where type =1 ORDER BY RAND() LIMIT 1
+    </select>
 
 </mapper>
