@@ -1,9 +1,16 @@
 package com.xxxx.server.controller;
 
 
+import com.xxxx.server.common.utils.R;
+import com.xxxx.server.pojo.Promotion;
+import com.xxxx.server.service.IPromotionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/promotion")
 public class PromotionController {
+
+
+    @Autowired
+    private IPromotionService promotionService;
+
+    /**
+     * 获取所有推广列表
+     * @return
+     */
+    @GetMapping("/list")
+    public R list(){
+        List<Promotion> list = promotionService.list();
+        return R.ok().put("data",list);
+    }
 
 }
