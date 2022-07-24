@@ -26,5 +26,11 @@ public class UserLoginVo {
     @ApiModelProperty(value = "验证码",required = true)
     private String code;
 
+    /**
+     * 记住我功能
+     */
+    @ApiModelProperty(value = "记住我",required = true)
+    private Boolean rememberMe;
+
 
 }
