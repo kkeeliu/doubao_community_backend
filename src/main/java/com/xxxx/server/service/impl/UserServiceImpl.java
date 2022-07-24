@@ -2,6 +2,7 @@ package com.xxxx.server.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xxxx.server.common.config.security.jwt.JwtTokenUtill;
+import com.xxxx.server.common.dto.RegisterDTO;
 import com.xxxx.server.common.utils.R;
 import com.xxxx.server.pojo.User;
 import com.xxxx.server.mapper.UserMapper;
@@ -9,7 +10,6 @@ import com.xxxx.server.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,9 @@ import org.springframework.util.StringUtils;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <p>
@@ -80,6 +82,34 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getCurrentUserInfoByUserName(String username) {
         return this.getOne(new QueryWrapper<User>().eq("username",username));
+    }
+
+    /**
+     * 注册功能
+     * @param registerDTO
+     * @return
+     */
+    @Override
+    public R register(RegisterDTO registerDTO) {
+        List<User> userList = this.baseMapper.selectList(new QueryWrapper<User>()
+                .eq("username", registerDTO.getName()).or().eq("email", registerDTO.getEmail()));
+
+        if (userList.size() > 0){
+            return R.error("账号或邮箱已经存在");
+        }
+
+        User user = User.builder()
+                .username(registerDTO.getName())
+                .alias(registerDTO.getName())
+                .password(passwordEncoder.encode(registerDTO.getPass()))
+                .avatar("https://s3.ax1x.com/2020/12/01/DfHNo4.jpg")
+                .email(registerDTO.getEmail())
+                .score(0)
+                .enabled(true)
+                .createTime(LocalDateTime.now())
+                .build();
+        this.save(user);
+        return R.ok();
     }
 
 }
