@@ -62,7 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/billboard/show",
                 "/captcha",
                 "/tip/today",
-                "/promotion/list"
+                "/promotion/list",
+                "/user/register"
         );
     }
 
