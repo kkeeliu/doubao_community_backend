@@ -8,9 +8,7 @@ import java.util.Collection;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -63,6 +61,7 @@ public class User implements Serializable , UserDetails {
     private String bio;
 
     @ApiModelProperty(value = "是否启用，1：是，0：否")
+    @Getter(AccessLevel.NONE)
     private Boolean enabled;
 
 
